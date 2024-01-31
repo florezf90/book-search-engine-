@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
-import { Container, Card, Button, Jumbotron, CardColumns } from "react-bootstrap";
+import { Container, Card, Button, Row } from "react-bootstrap";
 
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
@@ -41,11 +41,11 @@ const userData = data?.me || {};
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <div fluid className="text-light bg-dark">
         <Container>
           <h1>Viewing {userData.username} books!</h1>
         </Container>
-      </Jumbotron>
+      </div>
       <Container>
         <h2>
           {userData.savedBooks?.length
@@ -54,7 +54,7 @@ const userData = data?.me || {};
               }:`
             : "You have no saved books!"}
         </h2>
-        <CardColumns>
+        <Row>
           {userData.savedBooks?.map((book) => {
             return (
               <Card key={book.bookId} border="dark">
@@ -79,7 +79,7 @@ const userData = data?.me || {};
               </Card>
             );
           })}
-        </CardColumns>
+        </Row>
       </Container>
     </>
   );
